@@ -1,0 +1,29 @@
+_id: req_c55993cde5174cc1994950702917d8a2
+type: Request
+parentId: fld_ccfc0c7ab9a14c5c9e1077ee0c1a3bd7
+modified: 1630597120244
+created: 1629985870347
+url: "{{ _.baseUri }}/order/SUP0xx038/label"
+name: get label  - error - neznamy kod
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - id: pair_1e0e77a4c66042c587075e021e42a650
+    name: X-AUTH-TOKEN
+    value: "{{authToken}}"
+    description: ""
+  - id: pair_f0c8a546b90547b497c6b2bc36ed0259
+    name: Accept
+    value: application/json
+    description: ""
+authentication: {}
+metaSortKey: -1629188474464
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

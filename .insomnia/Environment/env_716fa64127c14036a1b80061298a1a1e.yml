@@ -1,0 +1,16 @@
+_id: env_716fa64127c14036a1b80061298a1a1e
+type: Environment
+parentId: env_07c3388d6962845cdce6df89e937d266668435c1
+modified: 1630916670844
+created: 1630916202630
+name: local -  Martin
+data:
+  baseUri: http://supervydejna.local/api/v1
+  authToken: "123"
+dataPropertyOrder:
+  "&":
+    - baseUri
+    - authToken
+color: null
+isPrivate: false
+metaSortKey: 1629899280066.25

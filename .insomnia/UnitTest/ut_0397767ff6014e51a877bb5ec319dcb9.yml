@@ -1,0 +1,12 @@
+_id: ut_0397767ff6014e51a877bb5ec319dcb9
+type: UnitTest
+parentId: uts_4a5e651c7f9c42648fc11578980a05bd
+modified: 1630920501658
+created: 1630920421884
+requestId: req_bb2008bc945e4066924c34622ba89a03
+name: seznam vydejen
+code: |-
+  const response = await insomnia.send();
+  expect(response.status).to.equal(200);
+  const body = JSON.parse(response.data);
+  expect(body).to.be.an("object");

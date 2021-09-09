@@ -1,0 +1,38 @@
+_id: req_f9c20675dc7b4e73b73a43167460abbc
+type: Request
+parentId: fld_575112af267644a79b56ceb114650983
+modified: 1630592105978
+created: 1629285893974
+url: "{{ _.baseUri }}/order/create"
+name: createOrder - error
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"deliveryPointCode" : "testfS7Ws",
+    	"phone" : "123",
+    	"name" : "John",
+    	"surname" : "Doe",
+    	"email" : "john",
+    	"codffe" : "black"
+    }
+parameters: []
+headers:
+  - id: pair_1e0e77a4c66042c587075e021e42a650
+    name: X-AUTH-TOKEN
+    value: "{{authToken}}"
+    description: ""
+  - name: Content-Type
+    value: application/json
+    id: pair_8e235fa20a5f4cd181dbc6e6eba5728e
+authentication: {}
+metaSortKey: -1629122630503
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

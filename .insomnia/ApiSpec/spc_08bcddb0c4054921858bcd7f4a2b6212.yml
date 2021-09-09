@@ -1,0 +1,395 @@
+_id: spc_08bcddb0c4054921858bcd7f4a2b6212
+type: ApiSpec
+parentId: wrk_6cb93e3722ed4533a0fbf6ea74a5d699
+modified: 1631195214609
+created: 1620980019823
+fileName: Supervydejny api v1 - dok
+contents: >-
+  openapi: "3.0.0"
+
+  info:
+    version: "0.1.3"
+    title: "Supervýdejny-api-v1"
+    description: "Api pro prijem a zpravu zasilek sluzby supervydejny.cz"
+    termsOfService:
+      https://supervydejny.cz/terms-and-conditions/
+    contact:
+      url: supervydejny.cz/api/dok
+      email: support@supervydejny.cz
+
+  servers:
+    - url: "https://supervydejny.cz/api/v1"
+      description: Produkcni server
+    - url: "https://demo.supervydejny.cz/api/v1"
+      description: Produkcni server
+  tags:
+    -
+      name: "api"
+  components:
+    schemas:
+      ErrorModel:
+        type: "object"
+        properties:
+          message:
+            type: "string"
+          code:
+            type: "int"
+      Order:
+        type: "object"
+        properties:
+          
+    securitySchemes:
+      JWT:
+        description: "You can create a JSON Web Token (JWT) during auth.\nUsage format: `Bearer <JWT>`\n"
+        name: "Authorization"
+        type: "apiKey"
+        in: "header"
+  paths:
+    /api/v1/order/{packageCode}/label:
+      get:
+        security: []
+        tags:
+          - "api"
+        summary: "api"
+        parameters: []
+        responses:
+          "400":
+            description: "Bad Request"
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties:
+                    errors:
+                      type: "array"
+                      items:
+                        $ref: '#/components/schemas/ErrorModel'
+                example:
+                  errors:
+                    - code: 400
+                      message: "Povolené Mime-type jsou image/png, application/json a x-application/zpl!"
+
+          default:
+            description: "Unexpected error"
+            content:
+              application/json:
+                example:
+                  code: 400
+                  message: "Sorry unable to perform operation."
+    /order/SUP0xx038/label:
+      get:
+        security: []
+        tags:
+          - "api"
+        summary: "api"
+        parameters: []
+        responses:
+          "404":
+            description: "OK"
+            content:
+              application/json:
+                schema:
+                  title: "error 404"
+                  type: "undefined"
+                example: "error 404"
+          default:
+            description: "Unexpected error"
+            content:
+              application/json:
+                example:
+                  message: "Sorry unable to perform operation."
+    /order/{packageCode}/label:
+      get:
+        security: []
+        tags:
+          - "api"
+        summary: "api"
+        parameters:
+          - in: path
+            name: packageCode
+            required: true
+            schema:
+              type: string
+              description: Kod stitku baliku
+              example: SUP0000571
+        responses:
+          "404":
+            code :  404
+            description: "Not Found"
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties:
+                    errors:
+                      type: "array"
+                      items:
+                        type: "string"
+                example:
+                  errors:
+                    - "Neznámý kód balíku: \"SUP0000038\"!"
+          default:
+            description: "Unexpected error"
+            content:
+              application/json:
+                example:
+                  message: "Sorry unable to perform operation."
+    /public/deliveryPoint:
+      get:
+        security: []
+        tags:
+          - "api"
+        summary: "api"
+        parameters: []
+        responses:
+          "200":
+            description: "OK"
+            content:
+              application/json:
+                schema:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      code:
+                        type: "string"
+                      name:
+                        type: "string"
+                      description:
+                        type: "string"
+                      website:
+                        type: "string"
+                      mainPicture:
+                        type: "string"
+                      images:
+                        type: "array"
+                        items:
+                          type: "string"
+                      gps:
+                        type: "object"
+                        properties:
+                          latitude:
+                            type: "string"
+                          longitude:
+                            type: "string"
+                      address:
+                        type: "object"
+                        properties:
+                          name:
+                            type: "string"
+                          address1:
+                            type: "string"
+                          address2:
+                            type: "string"
+                          city:
+                            type: "string"
+                          zipCode:
+                            type: "string"
+                          country:
+                            type: "string"
+                      maxPackageWeight:
+                        type: "string"
+                      openingHours:
+                        type: "string"
+                      navigation:
+                        type: "object"
+                        properties:
+                          general:
+                            type: "string"
+                          car:
+                            type: "string"
+                          publicTransport:
+                            type: "string"
+                    required:
+                      - "code"
+                      - "name"
+                      - "description"
+                      - "website"
+                      - "mainPicture"
+                      - "images"
+                      - "gps"
+                      - "address"
+                      - "maxPackageWeight"
+                      - "openingHours"
+                      - "navigation"
+                example:
+                  -
+                    code: "testfS7W"
+                    name: "test2UCFljkn"
+                    description: null
+                    website: null
+                    mainPicture: "https://supervydejny.90.cz/delivery-point/1/image/2"
+                    images:
+                      - "https://supervydejny.90.cz/delivery-point/1/image/1"
+                      - "https://supervydejny.90.cz/delivery-point/1/image/2"
+                    gps: null
+                    address:
+                      name: "Jan Kočí"
+                      address1: "Argentiská 310"
+                      address2: null
+                      city: "Pardubice"
+                      zipCode: "91599"
+                      country: "cze"
+                    maxPackageWeight: "10.00"
+                    openingHours: null
+                    navigation:
+                      general: null
+                      car: null
+                      publicTransport: null
+                  -
+                    code: "77-AA"
+                    name: "Výdejna 2"
+                    description: "popis prodejny"
+                    website: "http://www.example.com"
+                    mainPicture: "https://supervydejny.90.cz/delivery-point/2/image/3"
+                    images:
+                      - "https://supervydejny.90.cz/delivery-point/2/image/3"
+                      - "https://supervydejny.90.cz/delivery-point/2/image/4"
+                    gps:
+                      latitude: "50.0110703"
+                      longitude: "14.4008111"
+                    address:
+                      name: "Marek Kočí"
+                      address1: "Stará 333"
+                      address2: "pod schodama"
+                      city: "Benešov"
+                      zipCode: "52989"
+                      country: "cze"
+                    maxPackageWeight: "10.00"
+                    openingHours: "otvírací hodiny"
+                    navigation:
+                      general: "popis cesty"
+                      car: "popis autem"
+                      publicTransport: "popis mhd"
+          default:
+            description: "Unexpected error"
+            content:
+              application/json:
+                example:
+                  message: "Sorry unable to perform operation."
+    /order/create:
+      post:
+        security: []
+        tags:
+          - "api"
+        summary: "api"
+        parameters: []
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  deliveryPointCode:
+                    type: "string"
+                  phone:
+                    type: "string"
+                  name:
+                    type: "string"
+                  surname:
+                    type: "string"
+                  email:
+                    type: "string"
+                  codffe:
+                    type: "string"
+              example:
+                deliveryPointCode: "testfS7Ws"
+                phone: "123"
+                name: "John"
+                surname: "Doe"
+                email: "john"
+                codffe: "black"
+        responses:
+          "400":
+            description: "Bad Request"
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties:
+                    errors:
+                      type: "array"
+                      items:
+                        type: "string"
+                    warnings:
+                      type: "array"
+                      items:
+                        type: "string"
+                example:
+                  errors:
+                    - "Delivery point with code: testfS7Ws - not found"
+                    - "123 - Nesprávný tvar telefonního čísla. Správný formát je např: 123 456 789!"
+                    - "john - Zadaný email není ve správném tvaru!!"
+                  warnings:
+                    - "Unsupported key codffe"
+          default:
+            description: "Unexpected error"
+            content:
+              application/json:
+                example:
+                  message: "Sorry unable to perform operation."
+      get:
+        security: []
+        tags:
+          - "api"
+        summary: "api"
+        parameters: []
+        responses:
+          "401":
+            description: "Unauthorized"
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties:
+                    errors:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          message:
+                            type: "string"
+                example:
+                  errors:
+                    -
+                      message: "Full authentication is required to access this resource."
+          default:
+            description: "Unexpected error"
+            content:
+              application/json:
+                example:
+                  message: "Sorry unable to perform operation."
+    /:
+      get:
+        security: []
+        tags:
+          - "api"
+        summary: "api"
+        parameters: []
+        responses:
+          "404":
+            description: "Not Found"
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties:
+                    errors:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          message:
+                            type: "string"
+                example:
+                  errors:
+                    -
+                      message: "No route found for \"GET http://supervydejna.local/api/v1\""
+          default:
+            description: "Unexpected error"
+            content:
+              application/json:
+                example:
+                  message: "Sorry unable to perform operation."
+contentType: yaml

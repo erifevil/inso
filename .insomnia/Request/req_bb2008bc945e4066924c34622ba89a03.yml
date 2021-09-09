@@ -1,0 +1,21 @@
+_id: req_bb2008bc945e4066924c34622ba89a03
+type: Request
+parentId: wrk_6cb93e3722ed4533a0fbf6ea74a5d699
+modified: 1630914838313
+created: 1629188152790
+url: "{{ _.baseUri }}/public/delivery-points"
+name: listDeliveryPoints
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1629188152790
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

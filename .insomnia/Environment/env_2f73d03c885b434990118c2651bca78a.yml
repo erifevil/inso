@@ -1,0 +1,16 @@
+_id: env_2f73d03c885b434990118c2651bca78a
+type: Environment
+parentId: env_07c3388d6962845cdce6df89e937d266668435c1
+modified: 1630654583271
+created: 1629899307822
+name: prod
+data:
+  baseUri: https://supervydejny.cz/api/v1
+  authToken: postman
+dataPropertyOrder:
+  "&":
+    - baseUri
+    - authToken
+color: null
+isPrivate: false
+metaSortKey: 1629899307822

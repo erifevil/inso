@@ -1,0 +1,14 @@
+_id: ut_f722cdc6fac841c091151225d1b4a7e1
+type: UnitTest
+parentId: uts_4a5e651c7f9c42648fc11578980a05bd
+modified: 1630657292790
+created: 1630655135079
+requestId: req_ceb63937d0774b3ca16a82a7d1498f6f
+name: Chybna adresa - 404
+code: |-
+  const response = await insomnia.send();
+  expect(response.status).to.equal(404);
+  const body = JSON.parse(response.data);
+
+  expect(body).to.be.an("object");
+  expect(body).to.have.property("errors");

@@ -1,0 +1,10 @@
+_id: ut_1c7505361fcd4113aa3a1ea872803a96
+type: UnitTest
+parentId: uts_4a5e651c7f9c42648fc11578980a05bd
+modified: 1630655089241
+created: 1630602395845
+requestId: req_e821732ad7dc4edbab4de59a7083b8c7
+name: Vytvoreni objednavky
+code: |-
+  const response1 = await insomnia.send();
+  expect(response1.status).to.equal(201);

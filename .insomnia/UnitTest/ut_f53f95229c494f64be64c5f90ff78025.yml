@@ -1,0 +1,14 @@
+_id: ut_f53f95229c494f64be64c5f90ff78025
+type: UnitTest
+parentId: uts_4a5e651c7f9c42648fc11578980a05bd
+modified: 1630657291135
+created: 1630655942459
+requestId: req_82de88a64c55479db7364baa88dbcc17
+name: Chyba autorizace - 401
+code: |-
+  const response = await insomnia.send();
+  expect(response.status).to.equal(401);
+  const body = JSON.parse(response.data);
+
+  expect(body).to.be.an("object");
+  expect(body).to.have.property("errors");

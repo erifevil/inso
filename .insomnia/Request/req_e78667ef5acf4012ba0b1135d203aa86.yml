@@ -1,0 +1,29 @@
+_id: req_e78667ef5acf4012ba0b1135d203aa86
+type: Request
+parentId: fld_ccfc0c7ab9a14c5c9e1077ee0c1a3bd7
+modified: 1630592117209
+created: 1629188474364
+url: "{{ _.baseUri }}/order/SUP0000038/label"
+name: getLabel - zpl
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - id: pair_d740f4a3c24341318ca3fe831148d89a
+    name: X-AUTH-TOKEN
+    value: "{{authToken}}"
+    description: ""
+  - id: pair_0c1fce1947064b318652075e9e794d66
+    name: Accept
+    value: x-application/zpl
+    description: ""
+authentication: {}
+metaSortKey: -1629188474364
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

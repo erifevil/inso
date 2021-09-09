@@ -1,0 +1,25 @@
+_id: req_82de88a64c55479db7364baa88dbcc17
+type: Request
+parentId: wrk_6cb93e3722ed4533a0fbf6ea74a5d699
+modified: 1630656467496
+created: 1630592219787
+url: "{{ _.baseUri }}/order/create"
+name: test - 401
+description: ""
+method: POST
+body: {}
+parameters: []
+headers:
+  - id: pair_1bde03cb1ef24f7199d5a583fbf62140
+    name: Content-Type
+    value: application/json
+    description: ""
+authentication: {}
+metaSortKey: -1626089468393
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

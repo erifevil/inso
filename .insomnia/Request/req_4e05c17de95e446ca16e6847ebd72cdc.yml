@@ -1,0 +1,31 @@
+_id: req_4e05c17de95e446ca16e6847ebd72cdc
+type: Request
+parentId: fld_ccfc0c7ab9a14c5c9e1077ee0c1a3bd7
+modified: 1630599675979
+created: 1629986005547
+url: "{{ _.baseUri }}/order/{% response 'body',
+  'req_e821732ad7dc4edbab4de59a7083b8c7', 'b64::JC5wYWNrYWdlQ29kZQ==::46b',
+  'never', 60 %}/label"
+name: get label - success - application/json
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - id: pair_1e0e77a4c66042c587075e021e42a650
+    name: X-AUTH-TOKEN
+    value: "{{authToken}}"
+    description: ""
+  - id: pair_f0c8a546b90547b497c6b2bc36ed0259
+    name: Accept
+    value: application/json
+    description: ""
+authentication: {}
+metaSortKey: -1629188474514
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
