@@ -1,7 +1,7 @@
 _id: env_3c6cbf04fb5340868854b21227c7116c
 type: Environment
 parentId: env_07c3388d6962845cdce6df89e937d266668435c1
-modified: 1630914786550
+modified: 1631795659805
 created: 1630914768380
 name: local - Jirka
 data:
@@ -11,6 +11,6 @@ dataPropertyOrder:
   "&":
     - baseUri
     - authToken
-color: null
+color: "#f6e823"
 isPrivate: false
 metaSortKey: 1629899276591.5

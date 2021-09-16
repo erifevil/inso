@@ -1,7 +1,7 @@
 _id: env_2f73d03c885b434990118c2651bca78a
 type: Environment
 parentId: env_07c3388d6962845cdce6df89e937d266668435c1
-modified: 1630654583271
+modified: 1631795616101
 created: 1629899307822
 name: prod
 data:
@@ -11,6 +11,6 @@ dataPropertyOrder:
   "&":
     - baseUri
     - authToken
-color: null
+color: "#f70202"
 isPrivate: false
 metaSortKey: 1629899307822

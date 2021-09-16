@@ -1,7 +1,7 @@
 _id: spc_08bcddb0c4054921858bcd7f4a2b6212
 type: ApiSpec
 parentId: wrk_6cb93e3722ed4533a0fbf6ea74a5d699
-modified: 1631195214609
+modified: 1631263882839
 created: 1620980019823
 fileName: Supervydejny api v1 - dok
 contents: >-
@@ -14,7 +14,7 @@ contents: >-
     termsOfService:
       https://supervydejny.cz/terms-and-conditions/
     contact:
-      url: supervydejny.cz/api/dok
+      url: supervydejny.cz/api/dokumentace
       email: support@supervydejny.cz
 
   servers:
@@ -33,11 +33,21 @@ contents: >-
           message:
             type: "string"
           code:
-            type: "int"
+            type: "integer"
       Order:
         type: "object"
         properties:
-          
+          deliveryPointCode :
+            type: "string"
+          phone :
+            type: "string"
+          name :
+            type: "string"
+          surname :
+            type: "string"
+          email :
+            type: "string"
+
     securitySchemes:
       JWT:
         description: "You can create a JSON Web Token (JWT) during auth.\nUsage format: `Bearer <JWT>`\n"
@@ -51,7 +61,14 @@ contents: >-
         tags:
           - "api"
         summary: "api"
-        parameters: []
+        parameters:
+          - name: packageCode
+            in: path
+            required: true
+            schema:
+              type: string
+              description: Kod stitku baliku
+              example: SUP0000571
         responses:
           "400":
             description: "Bad Request"
@@ -89,9 +106,12 @@ contents: >-
             content:
               application/json:
                 schema:
-                  title: "error 404"
-                  type: "undefined"
-                example: "error 404"
+                  type: "object"
+                  properties:
+                    errors:
+                      type: "array"
+                      items:
+                        $ref: '#/components/schemas/ErrorModel'
           default:
             description: "Unexpected error"
             content:
@@ -114,7 +134,6 @@ contents: >-
               example: SUP0000571
         responses:
           "404":
-            code :  404
             description: "Not Found"
             content:
               application/json:
@@ -124,7 +143,7 @@ contents: >-
                     errors:
                       type: "array"
                       items:
-                        type: "string"
+                        $ref: '#/components/schemas/ErrorModel'
                 example:
                   errors:
                     - "Neznámý kód balíku: \"SUP0000038\"!"
@@ -279,20 +298,7 @@ contents: >-
           content:
             application/json:
               schema:
-                type: "object"
-                properties:
-                  deliveryPointCode:
-                    type: "string"
-                  phone:
-                    type: "string"
-                  name:
-                    type: "string"
-                  surname:
-                    type: "string"
-                  email:
-                    type: "string"
-                  codffe:
-                    type: "string"
+                $ref: '#/components/schemas/Order'
               example:
                 deliveryPointCode: "testfS7Ws"
                 phone: "123"
@@ -301,6 +307,23 @@ contents: >-
                 email: "john"
                 codffe: "black"
         responses:
+          "201":
+            description: "Objednavka vytvorena"
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties:
+                    packageCode:
+                      type: "string"
+                    errors:
+                      type: "array"
+                      items:
+                        $ref: '#/components/schemas/ErrorModel'
+                    warnings:
+                      type: "array"
+                      items:
+                        $ref: '#/components/schemas/ErrorModel'
           "400":
             description: "Bad Request"
             content:
@@ -311,11 +334,11 @@ contents: >-
                     errors:
                       type: "array"
                       items:
-                        type: "string"
+                        $ref: '#/components/schemas/ErrorModel'
                     warnings:
                       type: "array"
                       items:
-                        type: "string"
+                        $ref: '#/components/schemas/ErrorModel'
                 example:
                   errors:
                     - "Delivery point with code: testfS7Ws - not found"

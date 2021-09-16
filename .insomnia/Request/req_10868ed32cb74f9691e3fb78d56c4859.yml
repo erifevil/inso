@@ -1,12 +1,12 @@
 _id: req_10868ed32cb74f9691e3fb78d56c4859
 type: Request
 parentId: fld_ccfc0c7ab9a14c5c9e1077ee0c1a3bd7
-modified: 1630599702907
+modified: 1631798615520
 created: 1629982614501
 url: "{{ _.baseUri }}/order/{% response 'body',
   'req_e821732ad7dc4edbab4de59a7083b8c7', 'b64::JC5wYWNrYWdlQ29kZQ==::46b',
   'never', 60 %}/label"
-name: get label bez hlavicek
+name: get label - HDS - bez hlavicek
 description: ""
 method: GET
 body: {}
@@ -17,7 +17,7 @@ headers:
     value: "{{authToken}}"
     description: ""
 authentication: {}
-metaSortKey: -1629188474414
+metaSortKey: -1629188474482.75
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

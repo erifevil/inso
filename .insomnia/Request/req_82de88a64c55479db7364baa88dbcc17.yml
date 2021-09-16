@@ -1,24 +1,37 @@
 _id: req_82de88a64c55479db7364baa88dbcc17
 type: Request
-parentId: wrk_6cb93e3722ed4533a0fbf6ea74a5d699
-modified: 1630656467496
+parentId: fld_c817ff7a9d364b778968cd56fb10eeee
+modified: 1631791395451
 created: 1630592219787
 url: "{{ _.baseUri }}/order/create"
 name: test - 401
 description: ""
 method: POST
-body: {}
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"deliveryPointCode" : "testfS7W",
+    	"phone" : "123456789",
+    	"name" : "John",
+    	"surname" : "Doe",
+    	"email" : "john@doe.com"
+    }
 parameters: []
 headers:
   - id: pair_1bde03cb1ef24f7199d5a583fbf62140
     name: Content-Type
     value: application/json
     description: ""
+  - id: pair_4065475a43824b4ab20a307095a16740
+    name: ""
+    value: ""
+    description: ""
 authentication: {}
 metaSortKey: -1626089468393
 isPrivate: false
 settingStoreCookies: true
-settingSendCookies: true
+settingSendCookies: false
 settingDisableRenderRequestBody: false
 settingEncodeUrl: true
 settingRebuildPath: true
