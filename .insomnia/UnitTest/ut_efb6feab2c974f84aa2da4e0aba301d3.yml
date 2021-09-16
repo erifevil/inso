@@ -1,0 +1,13 @@
+_id: ut_efb6feab2c974f84aa2da4e0aba301d3
+type: UnitTest
+parentId: uts_939e22a682444eb3b675f0f6c86cd2cb
+modified: 1631794957445
+created: 1631702683228
+requestId: req_d6985e82352042fbb8be63788403db19
+name: HDS - only required
+code: |-
+  const response = await insomnia.send();
+  expect(response.status).to.equal(201);
+  const body = JSON.parse(response.data);
+  expect(body).to.be.an("object");
+  expect(body.packageCode).to.be.an("string");

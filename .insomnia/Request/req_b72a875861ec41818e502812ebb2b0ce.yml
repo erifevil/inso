@@ -1,0 +1,22 @@
+_id: req_b72a875861ec41818e502812ebb2b0ce
+type: Request
+parentId: fld_04dc7ccc725b478daf7c0f84454c748c
+modified: 1631791204562
+created: 1631791174683
+url: "{% response 'body', 'req_bb2008bc945e4066924c34622ba89a03',
+  'b64::JFswXVsnaW1hZ2VzJ11bMF0=::46b', 'always', 60 %}"
+name: geDeliveryPointImage
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1629139011149.75
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,12 @@
+_id: ut_74db336107734261a86b228298355c4c
+type: UnitTest
+parentId: uts_cdf85ecbc7544f5fb086eb601191dbad
+modified: 1631802638406
+created: 1631799453799
+requestId: req_557634eb1df244938285647ac79ef40c
+name: getLabel - HDS - x-application/zpl
+code: |-
+  const response = await insomnia.send();
+  expect(response.status).to.equal(200);
+  expect(response.headers['content-type']).to.equal("x-application/zpl");
+  expect(response.data).to.be.an("string");

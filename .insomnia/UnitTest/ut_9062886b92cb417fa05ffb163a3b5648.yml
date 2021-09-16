@@ -1,0 +1,17 @@
+_id: ut_9062886b92cb417fa05ffb163a3b5648
+type: UnitTest
+parentId: uts_cdf85ecbc7544f5fb086eb601191dbad
+modified: 1631802936764
+created: 1631799455584
+requestId: req_4e05c17de95e446ca16e6847ebd72cdc
+name: getLabel - HDS - application/json
+code: |-
+  const response = await insomnia.send();
+  expect(response.status).to.equal(200);
+  expect(response.headers['content-type']).to.equal("application/json");
+  const body = JSON.parse(response.data);
+  expect(body).to.be.an("object");
+  expect(body).to.have.property('labelCode');
+  expect(body).to.have.property('deliveryPointCode');
+  expect(body).to.have.property('customerName');
+  expect(body).to.have.property('customerSurname');

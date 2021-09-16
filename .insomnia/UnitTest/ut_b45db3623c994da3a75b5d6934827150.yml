@@ -1,0 +1,14 @@
+_id: ut_b45db3623c994da3a75b5d6934827150
+type: UnitTest
+parentId: uts_939e22a682444eb3b675f0f6c86cd2cb
+modified: 1631795058579
+created: 1631702728597
+requestId: req_7b80479cfa3849918e158d1ecc780885
+name: HDS - unsuported key
+code: |-
+  const response = await insomnia.send();
+  expect(response.status).to.equal(201);
+  const body = JSON.parse(response.data);
+  expect(body).to.be.an("object");
+  expect(body.packageCode).to.be.an("string");
+  expect(body.warnings).to.be.an("array");

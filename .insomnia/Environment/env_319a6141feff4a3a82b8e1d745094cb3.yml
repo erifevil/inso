@@ -1,12 +1,12 @@
 _id: env_319a6141feff4a3a82b8e1d745094cb3
 type: Environment
 parentId: env_07c3388d6962845cdce6df89e937d266668435c1
-modified: 1631796050052
+modified: 1631803246168
 created: 1629899269642
 name: local - Honza
 data:
   baseUri: http://supervydejna.local/api/v1
-  authToken: ztp52954834ekqdmesshr29zd4mjsr77
+  authToken: postman
 dataPropertyOrder:
   "&":
     - baseUri

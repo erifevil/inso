@@ -1,0 +1,10 @@
+_id: ut_45ab67183e734e769802962fff706a5d
+type: UnitTest
+parentId: uts_41713cf0a7f141e499da27d26c1cbc93
+modified: 1631792490646
+created: 1631792464784
+requestId: req_0d206503ae42445bb8de5a0965939ab5
+name: getMainImage - HDS
+code: |-
+  const response1 = await insomnia.send();
+  expect(response1.status).to.equal(200);

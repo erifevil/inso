@@ -1,0 +1,10 @@
+_id: ut_80e9e222fb3c40dc872e26aedb5bf5fd
+type: UnitTest
+parentId: uts_939e22a682444eb3b675f0f6c86cd2cb
+modified: 1631796219905
+created: 1631702811599
+requestId: req_04fd9399cb574cd3bb4d9718ea7b6db7
+name: error - bad method
+code: |-
+  const response1 = await insomnia.send();
+  expect(response1.status).to.equal(405);

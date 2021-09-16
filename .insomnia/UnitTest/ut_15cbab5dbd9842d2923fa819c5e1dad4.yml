@@ -1,0 +1,11 @@
+_id: ut_15cbab5dbd9842d2923fa819c5e1dad4
+type: UnitTest
+parentId: uts_cdf85ecbc7544f5fb086eb601191dbad
+modified: 1631802972454
+created: 1631799459989
+requestId: req_10868ed32cb74f9691e3fb78d56c4859
+name: getLabel - HDS - no mimeType header
+code: |-
+  const response = await insomnia.send();
+  expect(response.status).to.equal(200);
+  expect(response.headers['content-type']).to.equal("image/png");

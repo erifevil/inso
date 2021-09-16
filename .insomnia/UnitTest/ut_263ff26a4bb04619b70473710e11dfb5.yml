@@ -1,0 +1,20 @@
+_id: ut_263ff26a4bb04619b70473710e11dfb5
+type: UnitTest
+parentId: uts_cdf85ecbc7544f5fb086eb601191dbad
+modified: 1631800780876
+created: 1631798476204
+requestId: req_f36498425bf44b99887cdfa8e80b0bf2
+name: error - bad header
+code: |-
+  const response = await insomnia.send();
+  expect(response.status).to.equal(400);
+  const body = JSON.parse(response.data);
+  expect(body).to.be.an("object");
+  const errorlist = body.errors;
+  expect(body.errors).to.be.an("array");
+  const errorCodes = errorlist.map(err => err.code);
+  console.log(errorlist);
+  console.log(errorCodes);
+  expect(errorCodes).to.include.members([
+  40006
+  ]);
