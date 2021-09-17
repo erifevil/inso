@@ -1,7 +1,7 @@
 _id: ut_2a29c14021934a47acb626298241d17a
 type: UnitTest
 parentId: uts_41713cf0a7f141e499da27d26c1cbc93
-modified: 1631792607916
+modified: 1631873097708
 created: 1631702599193
 requestId: req_bb2008bc945e4066924c34622ba89a03
 name: deliveryPointsList - HDS
@@ -10,5 +10,11 @@ code: |-
   expect(response.status).to.equal(200);
   const body = JSON.parse(response.data);
   expect(body).to.be.an("array");
-  expect(body[0]).to.be.an("object");
-  expect(body[0].code).to.be.an("string");
+
+  const pointCodes = body.map(point => point.code);
+
+  expect(errorCodes).to.include.members([
+  40003,
+  40004,
+  40000
+  ]);
