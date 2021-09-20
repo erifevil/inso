@@ -1,9 +1,9 @@
 _id: req_c55993cde5174cc1994950702917d8a2
 type: Request
 parentId: fld_ccfc0c7ab9a14c5c9e1077ee0c1a3bd7
-modified: 1631798873610
+modified: 1632147262814
 created: 1629985870347
-url: "{{ _.baseUri }}/order/SUP0000038/label"
+url: "{{ _.baseUri }}/order/SUD0000038/label"
 name: get label  - error - neznamy kod
 description: ""
 method: GET

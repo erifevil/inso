@@ -1,11 +1,11 @@
 _id: req_cde23565ea7a4996aae2171b2126a6a9
 type: Request
 parentId: fld_ccfc0c7ab9a14c5c9e1077ee0c1a3bd7
-modified: 1631790806434
+modified: 1632145953535
 created: 1630054312078
 url: "{{ _.baseUri }}/order/{% response 'body',
   'req_e821732ad7dc4edbab4de59a7083b8c7', 'b64::JC5wYWNrYWdlQ29kZQ==::46b',
-  'never', 60 %}/label"
+  'always', 60 %}/label"
 name: get label - HDS -  image/png
 description: ""
 method: GET
