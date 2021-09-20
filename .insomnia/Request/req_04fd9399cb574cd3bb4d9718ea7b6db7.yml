@@ -1,7 +1,7 @@
 _id: req_04fd9399cb574cd3bb4d9718ea7b6db7
 type: Request
 parentId: fld_575112af267644a79b56ceb114650983
-modified: 1631796164193
+modified: 1632144891027
 created: 1631796156600
 url: "{{ _.baseUri }}/order/create"
 name: createOrder - error - bad method
@@ -11,7 +11,7 @@ body:
   mimeType: application/json
   text: |-
     {
-    	"deliveryPointCode" : "testfS7W",
+    	"deliveryPointCode" : "{{deliveryPointCode}}",
     	"phone" : "123456789"
     }
 parameters: []

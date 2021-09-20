@@ -1,7 +1,7 @@
 _id: req_7b80479cfa3849918e158d1ecc780885
 type: Request
 parentId: fld_575112af267644a79b56ceb114650983
-modified: 1631702925739
+modified: 1632144875803
 created: 1629815091741
 url: "{{ _.baseUri }}/order/create"
 name: createOrder -HDS - warning
@@ -11,7 +11,7 @@ body:
   mimeType: application/json
   text: |-
     {
-    "deliveryPointCode": "testfS7W",
+    "deliveryPointCode":"{{deliveryPointCode}}",
     "phone": "123123123",
     "name": "name",
     "email": "asd@asd.asd",

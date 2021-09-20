@@ -1,16 +1,18 @@
 _id: env_069f8f9cfc72485d971b9a337469e3a2
 type: Environment
 parentId: env_07c3388d6962845cdce6df89e937d266668435c1
-modified: 1632140937170
+modified: 1632144763164
 created: 1629899283541
 name: "90"
 data:
   baseUri: https://supervydejny.90.cz/api/v1
   authToken: ztp52954834ekqdmesshr29zd4mjsr77
+  deliveryPointCode: testfS7W
 dataPropertyOrder:
   "&":
     - baseUri
     - authToken
+    - deliveryPointCode
 color: "#0400ff"
 isPrivate: false
 metaSortKey: 1
