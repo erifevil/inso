@@ -1,7 +1,7 @@
 _id: ut_2a29c14021934a47acb626298241d17a
 type: UnitTest
 parentId: uts_41713cf0a7f141e499da27d26c1cbc93
-modified: 1631873097708
+modified: 1631886702964
 created: 1631702599193
 requestId: req_bb2008bc945e4066924c34622ba89a03
 name: deliveryPointsList - HDS
@@ -13,8 +13,11 @@ code: |-
 
   const pointCodes = body.map(point => point.code);
 
-  expect(errorCodes).to.include.members([
-  40003,
-  40004,
-  40000
+  expect(pointCodes).to.include.members([
+  "testPositive",
+  ]);
+  expect(pointCodes).to.not.include.members([
+  	"testNegative1",// active = false
+  	"testNegative2",// full capacity
+  	"testNegative3",// inactive prtner
   ]);
