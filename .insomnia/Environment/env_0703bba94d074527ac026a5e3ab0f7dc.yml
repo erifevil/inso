@@ -1,0 +1,18 @@
+_id: env_0703bba94d074527ac026a5e3ab0f7dc
+type: Environment
+parentId: env_07c3388d6962845cdce6df89e937d266668435c1
+modified: 1635250765677
+created: 1633012478885
+name: demo
+data:
+  baseUri: https://demo.supervydejny.cz/api/v1
+  authToken: demo-api-klic
+  deliveryPointCode: VYD0001
+dataPropertyOrder:
+  "&":
+    - baseUri
+    - authToken
+    - deliveryPointCode
+color: "#8689f4"
+isPrivate: false
+metaSortKey: 1633012478885

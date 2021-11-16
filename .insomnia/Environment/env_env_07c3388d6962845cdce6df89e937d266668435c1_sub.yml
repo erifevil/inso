@@ -1,0 +1,15 @@
+_id: env_env_07c3388d6962845cdce6df89e937d266668435c1_sub
+type: Environment
+parentId: env_07c3388d6962845cdce6df89e937d266668435c1
+modified: 1635238169698
+created: 1635238169698
+name: OpenAPI env
+data:
+  scheme: https
+  base_path: /api/v1
+  host: supervydejny.cz
+  xAuthToken: xAuthToken
+dataPropertyOrder: null
+color: null
+isPrivate: false
+metaSortKey: 1635238169698

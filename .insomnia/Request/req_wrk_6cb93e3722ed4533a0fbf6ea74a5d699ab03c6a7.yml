@@ -1,0 +1,27 @@
+_id: req_wrk_6cb93e3722ed4533a0fbf6ea74a5d699ab03c6a7
+type: Request
+parentId: fld_wrk_6cb93e3722ed4533a0fbf6ea74a5d6991d75774c
+modified: 1635238169689
+created: 1635238169689
+url: "{{ base_url }}/order/{{ packageCode }}/label"
+name: Štítek objednávky
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: Accept
+    disabled: true
+    value: image/png
+  - name: X-AUTH-TOKEN
+    disabled: false
+    value: "{{ xAuthToken }}"
+authentication: {}
+metaSortKey: -1635238169689
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

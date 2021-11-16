@@ -1,0 +1,35 @@
+_id: req_wrk_6cb93e3722ed4533a0fbf6ea74a5d69926186bff
+type: Request
+parentId: fld_wrk_6cb93e3722ed4533a0fbf6ea74a5d6991d75774c
+modified: 1635238169684
+created: 1635238169684
+url: "{{ base_url }}/order/create"
+name: Vytvoření nové objednávky
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "deliveryPointCode": "string",
+      "phone": "string",
+      "name": "string",
+      "surname": "string",
+      "email": "string"
+    }
+parameters: []
+headers:
+  - name: X-AUTH-TOKEN
+    disabled: false
+    value: "{{ xAuthToken }}"
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1635238169684
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

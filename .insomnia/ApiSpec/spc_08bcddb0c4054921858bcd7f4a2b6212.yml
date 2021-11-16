@@ -1,165 +1,212 @@
 _id: spc_08bcddb0c4054921858bcd7f4a2b6212
 type: ApiSpec
 parentId: wrk_6cb93e3722ed4533a0fbf6ea74a5d699
-modified: 1631263882839
+modified: 1636450829830
 created: 1620980019823
 fileName: Supervydejny api v1 - dok
 contents: >-
   openapi: "3.0.0"
 
   info:
-    version: "0.1.3"
+    version: "1.0.0"
     title: "Supervýdejny-api-v1"
     description: "Api pro prijem a zpravu zasilek sluzby supervydejny.cz"
     termsOfService:
-      https://supervydejny.cz/terms-and-conditions/
+      "https://supervydejny.cz/terms-and-conditions/"
     contact:
-      url: supervydejny.cz/api/dokumentace
-      email: support@supervydejny.cz
+      url: "supervydejny.cz/api/doc"
+      email: "support@supervydejny.cz"
 
   servers:
     - url: "https://supervydejny.cz/api/v1"
-      description: Produkcni server
+      description: "Produkcni server"
     - url: "https://demo.supervydejny.cz/api/v1"
-      description: Produkcni server
+      description: "Testovací server"
   tags:
-    -
-      name: "api"
+    - name: "Order"
+      description: "Objednávky, balíky, štítky"
+    - name: "DeliveryPoints"
+      description: "Výdejní místa"
   components:
     schemas:
       ErrorModel:
         type: "object"
+        description: "Plný seznam chyb na https://supervydejny.cz/api/doc/error-list"
         properties:
           message:
             type: "string"
           code:
             type: "integer"
-      Order:
+      OrderRequest:
         type: "object"
         properties:
-          deliveryPointCode :
+          deliveryPointCode:
             type: "string"
-          phone :
+          phone:
             type: "string"
-          name :
+          name:
             type: "string"
-          surname :
+          surname:
             type: "string"
-          email :
+          email:
             type: "string"
+      OrderResponse:
+        type: "object"
+        properties:
+          packageCode:
+            type: "string"
+          errors:
+            type: "array"
+            items:
+              $ref: '#/components/schemas/ErrorModel'
+          warnings:
+            type: "array"
+            items:
+              type: 'string'
+      LabelJSONResponse:
+        type: "object"
+        properties:
+          labelCode:
+            type: "string"
+          deliveryPointCode:
+            type: "string"
+          customerName:
+            type: "string"
+          customerSurname":
+            type: "string"
+      ErrorResponse:
+        type: "object"
+        description: "Plný seznam chyb na https://supervydejny.cz/api/doc/error-list"
+        properties:
+          errors:
+            type: "array"
+            items:
+              $ref: '#/components/schemas/ErrorModel'
+      DeliveryPoint:
+        type: "object"
+        properties:
+          code:
+            type: "string"
+          name:
+            type: "string"
+            nullable: true
+          description:
+            type: "string"
+            nullable: true
+          website:
+            type: "string"
+            nullable: true
+          mainPicture:
+            type: "string"
+          images:
+            type: "array"
+            items:
+              type: "string"
+          gps:
+            type: "object"
+            nullable: true
+            properties:
+              latitude:
+                type: "string"
+              longitude:
+                type: "string"
+          address:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+              address1:
+                type: "string"
+              address2:
+                type: "string"
+                nullable: true
+              city:
+                type: "string"
+              zipCode:
+                type: "string"
+              country:
+                type: "string"
+          maxPackageWeight:
+            type: "string"
+          openingHours:
+            type: "string"
+            nullable: true
+          navigation:
+            type: "object"
+            properties:
+              general:
+                type: "string"
+                nullable: true
+              car:
+                type: "string"
+                nullable: true
+              publicTransport:
+                type: "string"
+                nullable: true
 
     securitySchemes:
-      JWT:
-        description: "You can create a JSON Web Token (JWT) during auth.\nUsage format: `Bearer <JWT>`\n"
-        name: "Authorization"
+      ApiKeyAuth:
+        description: "Autentifikace tokenem v hlavičce"
+        name: "X-AUTH-TOKEN"
         type: "apiKey"
         in: "header"
   paths:
-    /api/v1/order/{packageCode}/label:
+    /order/{packageCode}/label:
       get:
-        security: []
         tags:
-          - "api"
-        summary: "api"
+          - "Order"
+        security:
+          - ApiKeyAuth: [ ]
+        summary: "Štítek objednávky"
         parameters:
-          - name: packageCode
+          - name: "packageCode"
             in: path
             required: true
             schema:
-              type: string
-              description: Kod stitku baliku
-              example: SUP0000571
+              type: "string"
+              description: "Kód štítku balíku"
+              example: "SUP0000571"
+          - name: "Accept"
+            description: "Formát odpovědi"
+            in: header
+            required: false
+            schema:
+              type: "string"
+              enum: [ "image/png", "x-application/zpl", "application/json" ]
+              default: "image/png"
         responses:
+          "200":
+            description: "Obrázek štítku"
+            content:
+              image/png:
+                schema:
+                  type: string
+                  format: binary
+              x-application/zpl:
+                schema:
+                  type: string
+                  format: text
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/LabelJSONResponse'
           "400":
             description: "Bad Request"
             content:
               application/json:
                 schema:
-                  type: "object"
-                  properties:
-                    errors:
-                      type: "array"
-                      items:
-                        $ref: '#/components/schemas/ErrorModel'
+                  $ref: '#/components/schemas/ErrorResponse'
                 example:
-                  errors:
-                    - code: 400
-                      message: "Povolené Mime-type jsou image/png, application/json a x-application/zpl!"
-
-          default:
-            description: "Unexpected error"
-            content:
-              application/json:
-                example:
-                  code: 400
-                  message: "Sorry unable to perform operation."
-    /order/SUP0xx038/label:
-      get:
-        security: []
-        tags:
-          - "api"
-        summary: "api"
-        parameters: []
-        responses:
-          "404":
-            description: "OK"
-            content:
-              application/json:
-                schema:
-                  type: "object"
-                  properties:
-                    errors:
-                      type: "array"
-                      items:
-                        $ref: '#/components/schemas/ErrorModel'
-          default:
-            description: "Unexpected error"
-            content:
-              application/json:
-                example:
-                  message: "Sorry unable to perform operation."
-    /order/{packageCode}/label:
-      get:
-        security: []
-        tags:
-          - "api"
-        summary: "api"
-        parameters:
-          - in: path
-            name: packageCode
-            required: true
-            schema:
-              type: string
-              description: Kod stitku baliku
-              example: SUP0000571
-        responses:
-          "404":
-            description: "Not Found"
-            content:
-              application/json:
-                schema:
-                  type: "object"
-                  properties:
-                    errors:
-                      type: "array"
-                      items:
-                        $ref: '#/components/schemas/ErrorModel'
-                example:
-                  errors:
-                    - "Neznámý kód balíku: \"SUP0000038\"!"
-          default:
-            description: "Unexpected error"
-            content:
-              application/json:
-                example:
-                  message: "Sorry unable to perform operation."
+                  "errors": [
+                      "code": 40006,
+                      "message": "Supported Mime-types are image/png, application/json and x-application/zpl!"
+                  ]
     /public/deliveryPoint:
       get:
-        security: []
         tags:
-          - "api"
-        summary: "api"
-        parameters: []
+          - "DeliveryPoints"
+        security: [ ]
+        summary: "Seznam poboček"
+        parameters: [ ]
         responses:
           "200":
             description: "OK"
@@ -168,162 +215,85 @@ contents: >-
                 schema:
                   type: "array"
                   items:
-                    type: "object"
-                    properties:
-                      code:
-                        type: "string"
-                      name:
-                        type: "string"
-                      description:
-                        type: "string"
-                      website:
-                        type: "string"
-                      mainPicture:
-                        type: "string"
-                      images:
-                        type: "array"
-                        items:
-                          type: "string"
-                      gps:
-                        type: "object"
-                        properties:
-                          latitude:
-                            type: "string"
-                          longitude:
-                            type: "string"
-                      address:
-                        type: "object"
-                        properties:
-                          name:
-                            type: "string"
-                          address1:
-                            type: "string"
-                          address2:
-                            type: "string"
-                          city:
-                            type: "string"
-                          zipCode:
-                            type: "string"
-                          country:
-                            type: "string"
-                      maxPackageWeight:
-                        type: "string"
-                      openingHours:
-                        type: "string"
-                      navigation:
-                        type: "object"
-                        properties:
-                          general:
-                            type: "string"
-                          car:
-                            type: "string"
-                          publicTransport:
-                            type: "string"
-                    required:
-                      - "code"
-                      - "name"
-                      - "description"
-                      - "website"
-                      - "mainPicture"
-                      - "images"
-                      - "gps"
-                      - "address"
-                      - "maxPackageWeight"
-                      - "openingHours"
-                      - "navigation"
+                    $ref: '#/components/schemas/DeliveryPoint'
                 example:
-                  -
-                    code: "testfS7W"
-                    name: "test2UCFljkn"
-                    description: null
-                    website: null
-                    mainPicture: "https://supervydejny.90.cz/delivery-point/1/image/2"
-                    images:
-                      - "https://supervydejny.90.cz/delivery-point/1/image/1"
-                      - "https://supervydejny.90.cz/delivery-point/1/image/2"
-                    gps: null
-                    address:
-                      name: "Jan Kočí"
-                      address1: "Argentiská 310"
-                      address2: null
-                      city: "Pardubice"
-                      zipCode: "91599"
-                      country: "cze"
-                    maxPackageWeight: "10.00"
-                    openingHours: null
-                    navigation:
-                      general: null
-                      car: null
-                      publicTransport: null
-                  -
-                    code: "77-AA"
-                    name: "Výdejna 2"
-                    description: "popis prodejny"
-                    website: "http://www.example.com"
-                    mainPicture: "https://supervydejny.90.cz/delivery-point/2/image/3"
-                    images:
-                      - "https://supervydejny.90.cz/delivery-point/2/image/3"
-                      - "https://supervydejny.90.cz/delivery-point/2/image/4"
-                    gps:
-                      latitude: "50.0110703"
-                      longitude: "14.4008111"
-                    address:
-                      name: "Marek Kočí"
-                      address1: "Stará 333"
-                      address2: "pod schodama"
-                      city: "Benešov"
-                      zipCode: "52989"
-                      country: "cze"
-                    maxPackageWeight: "10.00"
-                    openingHours: "otvírací hodiny"
-                    navigation:
-                      general: "popis cesty"
-                      car: "popis autem"
-                      publicTransport: "popis mhd"
-          default:
-            description: "Unexpected error"
-            content:
-              application/json:
-                example:
-                  message: "Sorry unable to perform operation."
+                  - "code": "17-CK"
+                    "name": "test2UCFljkn"
+                    "description": null
+                    "website": null
+                    "mainPicture": "https://supervydejny.cz/delivery-point/1/image/2"
+                    "images": [
+                        "https://supervydejny.cz/delivery-point/1/image/1",
+                        "https://supervydejny.cz/delivery-point/1/image/2"
+                    ]
+                    "gps":
+                      "latitude": "50.0110703"
+                      "longitude": "14.4008111"
+                    "address":
+                      "name": "Jan Kočí"
+                      "address1": "Argentiská 310"
+                      "address2": null
+                      "city": "Pardubice"
+                      "zipCode": "91599"
+                      "country": "cze"
+                    "maxPackageWeight": "10.00"
+                    "openingHours": null,
+                    "navigation":
+                      "general": null
+                      "car": null
+                      "publicTransport": null
+                  - "code": "77-AA"
+                    "name": "Výdejna 2"
+                    "description": "popis prodejny"
+                    "website": "http://www.example.com"
+                    "mainPicture": "https://supervydejny.cz/delivery-point/2/image/1"
+                    "images": [
+                        "https://supervydejny.cz/delivery-point/2/image/1",
+                        "https://supervydejny.cz/delivery-point/2/image/2"
+                    ]
+                    "gps":
+                      "latitude": "50.0110703"
+                      "longitude": "14.4008111"
+                    "address":
+                      "name": "Marek Kočí"
+                      "address1": "Stará 333"
+                      "address2": "pod schodama"
+                      "city": "Benešov"
+                      "zipCode": "52989"
+                      "country": "cze"
+                    "maxPackageWeight": "10.00"
+                    "openingHours": "otvírací hodiny"
+                    "navigation":
+                      "general": "popis cesty"
+                      "car": "popis autem"
+                      "publicTransport": "popis mhd"
     /order/create:
       post:
-        security: []
         tags:
-          - "api"
-        summary: "api"
-        parameters: []
+          - "Order"
+        security:
+          - ApiKeyAuth: [ ]
+        summary: "Vytvoření nové objednávky"
+        parameters: [ ]
         requestBody:
           required: true
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
+                $ref: '#/components/schemas/OrderRequest'
               example:
-                deliveryPointCode: "testfS7Ws"
-                phone: "123"
-                name: "John"
-                surname: "Doe"
-                email: "john"
-                codffe: "black"
+                "deliveryPointCode": "VYD0001"
+                "phone": "123456789"
+                "name": "John"
+                "surname": "Doe"
+                "email": "john@doe.com"
         responses:
           "201":
             description: "Objednavka vytvorena"
             content:
               application/json:
                 schema:
-                  type: "object"
-                  properties:
-                    packageCode:
-                      type: "string"
-                    errors:
-                      type: "array"
-                      items:
-                        $ref: '#/components/schemas/ErrorModel'
-                    warnings:
-                      type: "array"
-                      items:
-                        $ref: '#/components/schemas/ErrorModel'
+                  $ref: '#/components/schemas/OrderResponse'
           "400":
             description: "Bad Request"
             content:
@@ -338,81 +308,17 @@ contents: >-
                     warnings:
                       type: "array"
                       items:
-                        $ref: '#/components/schemas/ErrorModel'
+                        type: "string"
                 example:
-                  errors:
-                    - "Delivery point with code: testfS7Ws - not found"
-                    - "123 - Nesprávný tvar telefonního čísla. Správný formát je např: 123 456 789!"
-                    - "john - Zadaný email není ve správném tvaru!!"
-                  warnings:
-                    - "Unsupported key codffe"
-          default:
-            description: "Unexpected error"
-            content:
-              application/json:
-                example:
-                  message: "Sorry unable to perform operation."
-      get:
-        security: []
-        tags:
-          - "api"
-        summary: "api"
-        parameters: []
-        responses:
-          "401":
-            description: "Unauthorized"
-            content:
-              application/json:
-                schema:
-                  type: "object"
-                  properties:
-                    errors:
-                      type: "array"
-                      items:
-                        type: "object"
-                        properties:
-                          message:
-                            type: "string"
-                example:
-                  errors:
-                    -
-                      message: "Full authentication is required to access this resource."
-          default:
-            description: "Unexpected error"
-            content:
-              application/json:
-                example:
-                  message: "Sorry unable to perform operation."
-    /:
-      get:
-        security: []
-        tags:
-          - "api"
-        summary: "api"
-        parameters: []
-        responses:
-          "404":
-            description: "Not Found"
-            content:
-              application/json:
-                schema:
-                  type: "object"
-                  properties:
-                    errors:
-                      type: "array"
-                      items:
-                        type: "object"
-                        properties:
-                          message:
-                            type: "string"
-                example:
-                  errors:
-                    -
-                      message: "No route found for \"GET http://supervydejna.local/api/v1\""
-          default:
-            description: "Unexpected error"
-            content:
-              application/json:
-                example:
-                  message: "Sorry unable to perform operation."
+                  "errors":
+                    - "code": 40003
+                      "message": "Delivery point with code: testfS7Ws - not found"
+                    - "code": 40004
+                      "message": "123 - Nesprávný tvar telefonního čísla. Správný formát je např: 123 456 789!"
+                    - "code": 40004
+                      "message": "john - Zadaný email není ve správném tvaru!!"
+                    - "code": 40000
+                      "message": "Can not create order. An error has occurred during the process."
+                  "warnings":
+                    - "Unsupported key loremIpsum"
 contentType: yaml

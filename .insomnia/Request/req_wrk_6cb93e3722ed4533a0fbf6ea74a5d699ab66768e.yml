@@ -1,0 +1,21 @@
+_id: req_wrk_6cb93e3722ed4533a0fbf6ea74a5d699ab66768e
+type: Request
+parentId: fld_wrk_6cb93e3722ed4533a0fbf6ea74a5d69921870cc7
+modified: 1635238169686
+created: 1635238169686
+url: "{{ base_url }}/public/deliveryPoint"
+name: Seznam poboček
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1635238169686
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

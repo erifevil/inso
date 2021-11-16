@@ -1,10 +1,10 @@
-_id: ut_95de95cab08c4303a825f43b0a4ab5d9
+_id: ut_6816dd297570424eb2bb8d6235b46198
 type: UnitTest
 parentId: uts_939e22a682444eb3b675f0f6c86cd2cb
-modified: 1637053400326
-created: 1631702782768
-requestId: req_f9c20675dc7b4e73b73a43167460abbc
-name: error - errors
+modified: 1637058084231
+created: 1637058033768
+requestId: req_9381960062c142108cb0cc78b958e9bc
+name: error - inactive point
 code: |-
   const response = await insomnia.send();
   expect(response.status).to.equal(400);
@@ -14,7 +14,6 @@ code: |-
   expect(body.errors).to.be.an("array");
   const errorCodes = errorlist.map(err => err.code);
   expect(errorCodes).to.include.members([
-  '40003',
-  '40004',
+  '40008',
   '40000'
   ]);
