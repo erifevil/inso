@@ -4,7 +4,7 @@ parentId: fld_wrk_6cb93e3722ed4533a0fbf6ea74a5d69921870cc7
 modified: 1635238169686
 created: 1635238169686
 url: "{{ base_url }}/public/deliveryPoint"
-name: Seznam poboček
+name: List of delivery points
 description: ""
 method: GET
 body: {}

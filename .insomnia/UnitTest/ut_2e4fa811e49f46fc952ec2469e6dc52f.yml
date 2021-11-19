@@ -1,7 +1,7 @@
 _id: ut_2e4fa811e49f46fc952ec2469e6dc52f
 type: UnitTest
 parentId: uts_cdf85ecbc7544f5fb086eb601191dbad
-modified: 1637054387966
+modified: 1631803346284
 created: 1631799450325
 requestId: req_c55993cde5174cc1994950702917d8a2
 name: error - wrong packageCode
@@ -14,5 +14,5 @@ code: |-
   expect(body.errors).to.be.an("array");
   const errorCodes = errorlist.map(err => err.code);
   expect(errorCodes).to.include.members([
-  '40005'
+  40005
   ]);

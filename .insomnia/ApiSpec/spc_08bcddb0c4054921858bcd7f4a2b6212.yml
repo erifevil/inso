@@ -1,7 +1,7 @@
 _id: spc_08bcddb0c4054921858bcd7f4a2b6212
 type: ApiSpec
 parentId: wrk_6cb93e3722ed4533a0fbf6ea74a5d699
-modified: 1636450829830
+modified: 1637339064481
 created: 1620980019823
 fileName: Supervydejny api v1 - dok
 contents: >-
@@ -19,19 +19,19 @@ contents: >-
 
   servers:
     - url: "https://supervydejny.cz/api/v1"
-      description: "Produkcni server"
+      description: "Production server"
     - url: "https://demo.supervydejny.cz/api/v1"
-      description: "Testovací server"
+      description: "Test server"
   tags:
     - name: "Order"
-      description: "Objednávky, balíky, štítky"
+      description: "Orders, packages, labels"
     - name: "DeliveryPoints"
       description: "Výdejní místa"
   components:
     schemas:
       ErrorModel:
         type: "object"
-        description: "Plný seznam chyb na https://supervydejny.cz/api/doc/error-list"
+        description: "Full list of errors https://supervydejny.cz/api/doc/error-list"
         properties:
           message:
             type: "string"
@@ -76,7 +76,7 @@ contents: >-
             type: "string"
       ErrorResponse:
         type: "object"
-        description: "Plný seznam chyb na https://supervydejny.cz/api/doc/error-list"
+        description: "Full list of errors https://supervydejny.cz/api/doc/error-list"
         properties:
           errors:
             type: "array"
@@ -146,7 +146,7 @@ contents: >-
 
     securitySchemes:
       ApiKeyAuth:
-        description: "Autentifikace tokenem v hlavičce"
+        description: "Authentication by token in the header."
         name: "X-AUTH-TOKEN"
         type: "apiKey"
         in: "header"
@@ -157,17 +157,17 @@ contents: >-
           - "Order"
         security:
           - ApiKeyAuth: [ ]
-        summary: "Štítek objednávky"
+        summary: "Order label"
         parameters:
           - name: "packageCode"
             in: path
             required: true
             schema:
               type: "string"
-              description: "Kód štítku balíku"
+              description: "Package-label code"
               example: "SUP0000571"
           - name: "Accept"
-            description: "Formát odpovědi"
+            description: "Response format"
             in: header
             required: false
             schema:
@@ -176,7 +176,7 @@ contents: >-
               default: "image/png"
         responses:
           "200":
-            description: "Obrázek štítku"
+            description: "Label image"
             content:
               image/png:
                 schema:
@@ -205,7 +205,7 @@ contents: >-
         tags:
           - "DeliveryPoints"
         security: [ ]
-        summary: "Seznam poboček"
+        summary: "List of delivery points"
         parameters: [ ]
         responses:
           "200":
@@ -273,7 +273,7 @@ contents: >-
           - "Order"
         security:
           - ApiKeyAuth: [ ]
-        summary: "Vytvoření nové objednávky"
+        summary: "Create new order"
         parameters: [ ]
         requestBody:
           required: true
@@ -289,7 +289,7 @@ contents: >-
                 "email": "john@doe.com"
         responses:
           "201":
-            description: "Objednavka vytvorena"
+            description: "Order created"
             content:
               application/json:
                 schema:

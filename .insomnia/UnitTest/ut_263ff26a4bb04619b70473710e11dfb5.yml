@@ -1,7 +1,7 @@
 _id: ut_263ff26a4bb04619b70473710e11dfb5
 type: UnitTest
 parentId: uts_cdf85ecbc7544f5fb086eb601191dbad
-modified: 1637053469752
+modified: 1631872024882
 created: 1631798476204
 requestId: req_f36498425bf44b99887cdfa8e80b0bf2
 name: error - bad header
@@ -14,5 +14,5 @@ code: |-
   expect(body.errors).to.be.an("array");
   const errorCodes = errorlist.map(err => err.code);
   expect(errorCodes).to.include.members([
-  '40006'
+  40006
   ]);

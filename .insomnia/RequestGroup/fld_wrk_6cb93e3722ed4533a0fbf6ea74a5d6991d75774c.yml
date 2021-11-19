@@ -4,7 +4,7 @@ parentId: wrk_6cb93e3722ed4533a0fbf6ea74a5d699
 modified: 1635238169695
 created: 1635238169695
 name: Order
-description: Objednávky, balíky, štítky
+description: Orders, packages, labels
 environment: {}
 environmentPropertyOrder: null
 metaSortKey: -1635238169695

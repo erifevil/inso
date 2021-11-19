@@ -1,7 +1,7 @@
 _id: ut_2e65bec1a0c44ccba515255f44e09e6b
 type: UnitTest
 parentId: uts_939e22a682444eb3b675f0f6c86cd2cb
-modified: 1637053413845
+modified: 1637328864489
 created: 1631797695951
 requestId: req_a9f81615320741ae804b06dc95aea65b
 name: error - requred missing
@@ -14,5 +14,5 @@ code: |-
   expect(body.errors).to.be.an("array");
   const errorCodes = errorlist.map(err => err.code);
   expect(errorCodes).to.include.members([
-  '40002',
+  40002,
   ]);

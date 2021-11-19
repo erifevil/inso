@@ -1,7 +1,7 @@
 _id: ut_95de95cab08c4303a825f43b0a4ab5d9
 type: UnitTest
 parentId: uts_939e22a682444eb3b675f0f6c86cd2cb
-modified: 1637053400326
+modified: 1637328924675
 created: 1631702782768
 requestId: req_f9c20675dc7b4e73b73a43167460abbc
 name: error - errors
@@ -14,7 +14,7 @@ code: |-
   expect(body.errors).to.be.an("array");
   const errorCodes = errorlist.map(err => err.code);
   expect(errorCodes).to.include.members([
-  '40003',
-  '40004',
-  '40000'
+  40003,
+  40004,
+  40000
   ]);
