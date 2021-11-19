@@ -1,14 +1,14 @@
 _id: env_9ccfaea08de14fc09be00cc44cab4cd9
 type: Environment
 parentId: env_07c3388d6962845cdce6df89e937d266668435c1
-modified: 1637341880451
+modified: 1637342784345
 created: 1632141424266
 name: local - docker
 data:
   baseUri: localhost:8091/api/v1
   authToken: postman
-  deliveryPointCode: testPositive
-  inactivePointCode: testNegative1
+  deliveryPointCode: testPo
+  inactivePointCode: testN1
 dataPropertyOrder:
   "&":
     - baseUri
